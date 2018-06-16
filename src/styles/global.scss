@@ -1,15 +1,21 @@
 /* RGB */
-$orange: rgb(241, 80, 37);
-$red: #F22435;
+$pink:  rgba(254, 214, 227, 1);
+$dark-pink:#FF3B93;
+$light-blue:rgba(168, 237, 234, 1);
+$dark-blue:#0A98AD;
 $white: #f9f9f9;
 $light-gray: rgba(230, 232, 230, 1);
-$gray: rgba(206, 208, 206, 1);
-$black: rgba(3, 8, 20, 1);
+$gray: rgb(128, 128, 128);
+$black: rgb(65, 65, 65);
 $whiteish : #EDE8E2;
 
 //BORDERS
 
-$border-gray: 3px solid $gray;
-
+$border-gray: 2px solid $gray;
 $border-light: 2px solid $light-gray;
 $border-white: 3px solid $white;
+
+$gradient:linear-gradient(240deg, rgba(168, 237, 234, 1) 0%, rgba(254, 214, 227, 1) 100%);
+
+
+// $gradient: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);

@@ -1,29 +1,30 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+<router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import index from './components/index.vue'
+import login from './components/login.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    login,
+    index
   }
 }
 </script>
 
 <style lang="scss">
 @import '../src/styles/global.scss';
+body{
+  background-color: $white;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
 }
 </style>

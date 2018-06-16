@@ -9,7 +9,7 @@ USER
 
 
 export default {
-  name: 'app',
+  name: 'login',
   components: {
 
   }

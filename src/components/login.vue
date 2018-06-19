@@ -45,7 +45,8 @@ import globalnavigation from '../components/templates/globalnavigation'
          email:"",
          emailError:"",
          passError:"",
-         myvalidation:false
+         myvalidation:false,
+
        }
      },
      methods:{
@@ -82,7 +83,7 @@ import globalnavigation from '../components/templates/globalnavigation'
          else{
            this.password=""
            this.email=""
-           this.$router.push('/user' ) 
+           this.$router.push('/userpage' );
          }
        
        }

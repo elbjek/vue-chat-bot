@@ -1,31 +1,28 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light navigation">
-  <router-link to="/" class="navbar-brand">LOGO</router-link>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-  
-      </ul>
-      
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <router-link to="/login" class="nav-link">Login</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/signup" class="nav-link">Sign up</router-link>
-        </li>
-      </ul>
-    </div>
-  </nav>
+<b-navbar class="navigation" toggleable="md" type="light" variant="info">
+
+  <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+
+  <b-navbar-brand to="/">LOGO</b-navbar-brand>
+
+  <b-collapse is-nav id="nav_collapse">
+
+    <b-navbar-nav>
+      <b-nav-item href="#">Link</b-nav-item>
+    </b-navbar-nav>
+
+    <!-- Right aligned nav items -->
+    <b-navbar-nav class="ml-auto">
+        <b-nav-item to="/login"> Login</b-nav-item>
+        <b-nav-item to="/login"> Sign up</b-nav-item>
+    </b-navbar-nav>
+
+  </b-collapse>
+</b-navbar>
+
+
+
 </template>
 
 <script>
@@ -39,13 +36,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import '../../styles/global.scss';
 
 .navigation{
-  
-    max-width:1440px;
+ max-width:1440px;
   margin:0 auto;
+  background-color: transparent !important;
    .navbar-brand{
 
      font-weight: 900;

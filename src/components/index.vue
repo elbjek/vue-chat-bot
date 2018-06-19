@@ -1,6 +1,8 @@
 <template>
   <div class="hello">
-<globalnavigation></globalnavigation>
+<!-- <globalnavigation></globalnavigation>
+ -->
+  ALOHA
   </div>
 </template>
 

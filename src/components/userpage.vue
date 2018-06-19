@@ -11,10 +11,11 @@
   <option value="favorites">All Contacts</option>
   <option value="favorites">New Contacts</option>
 </select>
-  <contacts 
+
+  <contacts    
       v-for="user in users"
       v-bind:user="user"
-      v-bind:key="user.id"
+      v-bind:key="user.userID"
       v-bind:countUsers="countUsers"> 
   </contacts>
 </div>
@@ -22,6 +23,12 @@
 <info v-bind:countUsers="countUsers" 
       v-bind:isOnline="totalUsersOnline"
 ></info>
+
+
+<chat v-bind:clickedElement="clickedElement" :user="users"
+ >
+      </chat>
+
 
   </div>
 </template>
@@ -31,12 +38,14 @@
 import contacts from '../components/templates/contacts.vue'
 import chatnav from '../components/templates/chatnav.vue'
 import info from '../components/templates/info.vue'
+import chat from '../components/templates/displaychat.vue'
 export default {
   name: 'index',
   components:{
     contacts,
     chatnav,
-    info
+    info,
+    chat
   },
   data(){
     return{
@@ -61,7 +70,8 @@ export default {
         userID:3,
         online:false}
 
-      ]
+      ],
+        clickedElement:''
     }
   },
   computed:{
@@ -72,14 +82,22 @@ export default {
       totalUsersOnline(){
         var total = 0;
         for(var i = 0; i < this.users.length; i++){ 
-        console.log("users online",this.users[i].online)
+        // console.log("users online",this.users[i].online)
           if(this.users[i].online == true){
             total++
           }
-
         } return total
       }
-  }
+  },
+
+
+    mounted(){
+    this.$on('itemClicked',(userID)=>{
+      this.clickedElement = userID;
+      console.log(this.clickedElement)
+    })
+   
+    }
   }
 </script>
 

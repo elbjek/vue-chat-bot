@@ -2,7 +2,7 @@
     <div >
 
     <ul>
-        <li>
+        <li @click="getClickedElement">
             <a class="chatbox d-flex align-items-center" href="#">
                 <div class="img"> 
                     <img :src="user.img" alt="">
@@ -32,10 +32,7 @@ export default {
   name: 'contacts',
     data () {
     return {
-       classObject: {
-         active: true,
-        'text-danger': false
-  }
+     getClickedElementID:''
     }
     
   },
@@ -46,7 +43,12 @@ mounted(){
 
 },
   methods:{
-   
+      getClickedElement(){
+         this.getClickedElementID = this.user.userID
+
+         this.$parent.$emit("itemClicked", this.getClickedElementID)
+        // alert("halp")
+      }
     }
 }
 </script>

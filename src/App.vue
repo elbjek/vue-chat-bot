@@ -5,30 +5,27 @@
 </template>
 
 <script>
-import index from './components/index.vue'
-import login from './components/login.vue'
+import login from "./components/login.vue";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    login,
-    index
+    login
   },
-  data(){
-    return{
-      active:false
-    }
+  data() {
+    return {
+      active: false
+    };
   }
-}
+};
 </script>
 
 <style lang="scss">
-@import '../src/styles/global.scss';
-body{
-  background-color: $white;
-}
+@import "../src/styles/global.scss";
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  background-color: $white;
+  // width:1440px;
+  // background-color: red;
 }
 </style>

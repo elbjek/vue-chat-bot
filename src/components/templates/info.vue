@@ -1,15 +1,14 @@
 <template>
-    <div >
+    <div class="contact-counts" >
         <ul>
-            <li > <a href="#">Contacts:{{countUsers}}</a></li>
-            <li  ><a href="#">Online:{{isOnline}}</a></li>
-            <li><a href="#">Unread Messages</a></li>            
+            <li > <a href="#">Contacts: {{countUsers}}</a></li>
+            <li  ><a href="#">Online: {{isOnline}}</a></li>
+            <li><a href="#">Unread: {{unreadMessages}}</a></li>            
         </ul>
-
 
         <form action="">
             <input type="text" placeholder="Search contacts">
-       <i class="fas fa-search"></i>
+            <i class="fas fa-search"></i>
         </form>
 
     </div>
@@ -28,7 +27,7 @@ export default {
     }
     
   },
-   props: ['countUsers','isOnline'],
+   props: ['countUsers','isOnline', 'unreadMessages'],
 
 }
 </script>
@@ -37,10 +36,9 @@ export default {
 <style scoped lang="scss">
 @import '../../styles/global.scss';
 
-.chatbox{
-  width:1440px;
+.contact-counts{
+  border:1px solid black;
   margin:0 auto;
-
 }
 
 

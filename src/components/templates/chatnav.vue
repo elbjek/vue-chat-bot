@@ -1,60 +1,69 @@
 <template>
-  <div class="chatbox">
-<ul>
-    <li><a href="#" :class="active=isActive">chat</a></li>
-    <li><a href="#">notifications</a></li>
-    <li><a href="#">favorites</a></li>
-    <li><a href="#">calls</a></li>
-</ul>
+  <div class="chatnav d-flex align-items-center justify-content-between"  >
+    <ul>
+        <li><a href="#" >LOGO</a></li>
+        <li><a href="#" ><i class="far fa-comment"></i></a></li>
+        <li><a href="#"><i class="far fa-bell"></i></a></li>
+        <li><a href="#"><i class="far fa-star"></i></a></li>
+        <li><a href="#"><i class="fas fa-phone"></i></a></li>
+
+    </ul>
+    <a href="#" @click.prevent="toggleMenu"><i class="fas fa-angle-left"></i></a>
 </div>
 </template>
 
 <script>
-
-
-
 export default {
-  name: 'chatnav',
-    data () {
+  name: "chatnav",
+  data() {
     return {
-        isActive:true
-    }
-    
+      toggle: false,
+      toggleClass : ''
+    };
   },
-  methods:{
- 
+  methods: {
+    toggleMenu(){
+      // 
+      this.toggle? this.toggle=false:this.toggle=true
+      this.toggleClass = this.toggle;
+      this.$parent.$emit("toggleMenu", this.toggleClass)
+      console.log("apsfd")
+    
+      }
     }
-
-}
+  
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-@import '../../styles/global.scss';
+@import "../../styles/global.scss";
 
-.chatbox{
-  width:1440px;
-  margin:0 auto;
-
-  .img{
-      height:100px;
-      width:100px;
-      overflow: hidden;
-      border-radius: 50%;
-    img{
-        height:150px;
+.chatnav {
+  margin: 0 auto;
+  padding: 0;
+  border: 1px solid $black;
+  a{
+    margin-right:10px;
+    padding:0;
+  }
+  ul {
+    margin: 0;
+    padding: 10px 0px;
+    li {
+      display: inline;
+      list-style-type: none;
+      a {
+        color: $red;
+        margin: 10px;
+        font-size: 20px;
+        text-align: center;
+        
+      }
     }
   }
-  input{
-      border:$border-light;
-      padding:20px;
+}
+  .toggleMenu{
+    background-color: red;
   }
-  p{
-    border:$border-light;
-    padding:20px;
-    margin:10px;
-}
-}
-
-
 </style>

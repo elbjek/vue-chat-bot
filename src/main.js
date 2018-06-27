@@ -10,8 +10,8 @@ import router from './router';
 // CSS
 import '../src/styles/global.scss'
 
-// import axios from 'axios';
-// Vue.prototype.axios=axios
+import axios from 'axios';
+Vue.prototype.axios=axios
 
 // Bootstrap
 import BootstrapVue from 'bootstrap-vue'

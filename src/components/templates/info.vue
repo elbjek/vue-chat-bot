@@ -1,11 +1,10 @@
 <template>
     <div class="contact-counts" >
         <ul>
-            <li > <a href="#">Contacts: {{countUsers}}</a></li>
-            <li  ><a href="#">Online: {{isOnline}}</a></li>
+            <li> <a href="#">Contacts: {{countUsers}}</a></li>
+            <li><a href="#">Online: {{isOnline}}</a></li>
             <li><a href="#">Unread: {{unreadMessages}}</a></li>            
         </ul>
-
         <form action="">
             <input type="text" placeholder="Search contacts">
             <i class="fas fa-search"></i>

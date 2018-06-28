@@ -1,35 +1,29 @@
 <template>
-  <div class="chatbox ">
-  <div>
-    <div class="" :class="{'col-lg-3':toggledClass}">
-    <chatnav ></chatnav>
-      <div >
-        <info :countUsers="countUsers" 
-            :isOnline="totalUsersOnline"
-            :unreadMessages="unreadMessages">
+  <div class="chatbox container-fluid ">
+  <div class="row d-flex flex-row align-items-start">
+    <div class="col-lg-3 sidebar" >
+    <chatnav></chatnav>
+
+        <info :users="users" 
+        :allUsers="allUsers"
+        :unreadMessages="unreadMessages" 
+        :totalUsersOnline="totalUsersOnline">
       </info>
-      </div>
-      <div >
-        <select name="items" id="">
-        <option selected value="favorites">Favorites</option>
-        <option value="favorites">All Contacts</option>
-        <option value="favorites">New Contacts</option>
-      </select>
 
         <contacts    
             v-for="user in users"
-            v-bind:user="user"
-            v-bind:key="user.userID"
-            v-bind:countUsers="countUsers"> 
+            :user="user"
+            :key="user.userID"> 
         </contacts>
     </div>
-</div>
-<chat class="col" :clickedElement="clickedElement" :user="selectedUser"></chat>
+
+<chat :clickedElement="clickedElement" :user="selectedUser"></chat>
   </div>
   </div>
 </template>
 
 <script>
+import moment from 'moment'
 import contacts from "../components/templates/contacts.vue";
 import chatnav from "../components/templates/chatnav.vue";
 import info from "../components/templates/info.vue";
@@ -52,7 +46,7 @@ export default {
     };
   },
   computed: {
-    countUsers() {
+    allUsers() {
       return this.users.length;
     },
     totalUsersOnline() {
@@ -64,7 +58,7 @@ export default {
       }
       return total;
     },
-    unreadMessages() {
+     unreadMessages(){
       var total = 0;
       for (var i = 0; i < this.users.length; i++) {
         for (var j = 0; j < this.users[i].messages.length; j++) {
@@ -76,35 +70,37 @@ export default {
       return total;
     }
   },
-
+  
   mounted() {
     this.axios
-      .get('https://api.myjson.com/bins/ixpfq')
+      .get('https://api.myjson.com/bins/17cxfy')
       .then(response =>(this.users = response.data))
     this.getClickedElement();
-    this.getToggleMenu();
+   
   },
+
   methods: {
     getClickedElement() {
+
+      var date = new Date()
       this.$on("itemClicked", userID => {
         this.clickedElement = userID;
         for (var i = 0; i < this.users.length; i++) {
-          // console.log(this.users[i].userID)
           if (this.clickedElement == this.users[i].userID) {
             this.selectedUser = this.users[i];
+            this.selectedUser.messages.push({time:moment(date).fromNow()})
             setTimeout(() => {
               this.selectedUser.messages[0].display = true;
+              this.selectedUser.messages.read = true;
+
             }, 2500);
           }
         }
       });
-    },
-    getToggleMenu() {
-      this.$on("toggleMenu", toggleClass => {
-        this.toggledClass = toggleClass;
-      });
     }
-  }
+
+  },
+
 };
 </script>
 
@@ -113,7 +109,7 @@ export default {
 @import "../styles/global.scss";
 
 .chatbox {
-  // max-width: 1440px;
+
   margin: 0;
   padding: 0;
   .row {
@@ -123,6 +119,14 @@ export default {
       margin: 0;
       padding: 0;
     }
+  }
+  .col-lg-3{
+    margin:0;
+    padding:0;
+  }
+  .sidebar{
+    border-right:1px solid $dark-red;
+    padding-bottom:100px;
   }
 }
 </style>

@@ -1,18 +1,22 @@
 <template>
     <div class="contacts" >
+   
       <ul>
-          <li @click.prevent="getClickedElement">
-              <router-link to="/userpage" class=" d-flex align-items-center" href="#">
-                    <div class="img-circle">
-                        <img class="img-responsive" :src="user.img" alt="">
+          <li @click.prevent="getClickedElement" >
+              <router-link to="/userpage" href="#" class="d-flex align-items-center justify-content-between">
+                   <div class="d-flex align-items-center">
+                      <div class="img-circle">
+                        <img  :src="user.img" alt="">
                     </div>
                   <div>
                       <h5>{{user.name}}</h5>
                       <p>{{user.job}}</p>
                   </div>
+                   </div>
                   <svg :class="{ onlineUser: user.online}" fill="red" height="15" width="15" >
                       <circle cx="7.5" cy="7.5" r="5" class="circle"/>
                   </svg>
+                         
               </router-link>
           </li>
       </ul>
@@ -24,7 +28,8 @@ export default {
   name: "contacts",
   data() {
     return {
-      getClickedElementID: ""
+      getClickedElementID: "",
+
     };
   },
   props: ["user"],
@@ -33,6 +38,7 @@ export default {
     getClickedElement() {
       this.getClickedElementID = this.user.userID;
       this.$parent.$emit("itemClicked", this.getClickedElementID);
+      
     }
   }
 };
@@ -43,7 +49,7 @@ export default {
 @import "../../styles/global.scss";
 
 .contacts {
-  border: 1px solid $black;
+padding-right: 10px;
 
  ul{
    margin:0;
@@ -52,26 +58,42 @@ export default {
      list-style-type: none;
      a{
         .img-circle{
-          max-width: 100px;
-          max-height: 100px;
-          // position: relative;
+          max-width: 70px;
+          max-height: 70px;
           overflow: hidden;
           border-radius: 50%;
+          margin-right: 10px;
            img{
-           max-height:120px;
+           max-height:80px;
           //  border-radius: 100%;
-           border:1px;
-       }
+           border-radius:1px;
+          }
         }
+        h5{
+          font-size: 18px;
+          margin:0;
+          padding:0;
+          font-weight: 900;
+         
+        }
+        p{
+          margin:0;
+          padding:0;
+        }
+        font-size: 14px;
+         color:$black;
      }
    }
  }
-
+  
   .offlineUser {
-    fill: red;
+    fill: $red;
   }
   .onlineUser {
-    fill: green;
+    fill: $green;
+  }
+  .isFavorite{
+    background-color:pink;
   }
 }
 </style>

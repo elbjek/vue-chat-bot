@@ -1,14 +1,14 @@
 <template>
   <div class="chatnav d-flex align-items-center justify-content-between"  >
+    <a href="#" class="logo">LOGO</a>
     <ul>
-        <li><a href="#" >LOGO</a></li>
-        <li><a href="#" ><i class="far fa-comment"></i></a></li>
+        <li><a href="#" ><i  class="far fa-comment active"></i></a></li>
         <li><a href="#"><i class="far fa-bell"></i></a></li>
         <li><a href="#"><i class="far fa-star"></i></a></li>
         <li><a href="#"><i class="fas fa-phone"></i></a></li>
 
     </ul>
-    <a href="#" @click.prevent="toggleMenu"><i class="fas fa-angle-left"></i></a>
+
 </div>
 </template>
 
@@ -20,17 +20,7 @@ export default {
       toggle: false,
       toggleClass : ''
     };
-  },
-  methods: {
-    toggleMenu(){
-      // 
-      this.toggle? this.toggle=false:this.toggle=true
-      this.toggleClass = this.toggle;
-      this.$parent.$emit("toggleMenu", this.toggleClass)
-      console.log("apsfd")
-    
-      }
-    }
+  }
   
 };
 </script>
@@ -42,23 +32,35 @@ export default {
 .chatnav {
   margin: 0 auto;
   padding: 0;
-  border: 1px solid $black;
+
   a{
     margin-right:10px;
     padding:0;
   }
+  .logo{
+      color:$dark-red;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 30px;
+      &:hover{
+        font-weight: 900;
+      }
+  }
   ul {
+
     margin: 0;
     padding: 10px 0px;
+    
     li {
       display: inline;
       list-style-type: none;
       a {
-        color: $red;
+        color: $black;
         margin: 10px;
         font-size: 20px;
         text-align: center;
-        
+        text-decoration: none;
+      
       }
     }
   }

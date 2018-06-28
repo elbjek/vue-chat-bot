@@ -1,44 +1,77 @@
 <template>
     <div class="contact-counts" >
-        <ul>
-            <li> <a href="#">Contacts: {{countUsers}}</a></li>
-            <li><a href="#">Online: {{isOnline}}</a></li>
-            <li><a href="#">Unread: {{unreadMessages}}</a></li>            
+        <ul class="d-flex justify-content-center">
+            <li class="d-flex flex-column"><a href="#"> {{allUsers}}</a> Contacts </li>
+            <li class="d-flex flex-column"><a href="#"> {{totalUsersOnline}}</a>Online</li>
+            <li class="d-flex flex-column"><a href="#">{{unreadMessages}} </a> Unread</li>            
         </ul>
-        <form action="">
-            <input type="text" placeholder="Search contacts">
-            <i class="fas fa-search"></i>
-        </form>
+    <form action="" class="d-flex justify-content-between">
+        CONTACT LIST:
+     <label for="select">
 
+            <select name="select" id="select">
+            <option  selected value="favorites">Favorites</option>
+            <option  value="favorites">All Contacts</option>
+            <option value="favorites">New Contacts</option>
+        </select>
+     </label>
+    </form>
     </div>
 
 </template>
 
 <script>
-
-
-
 export default {
-  name: 'info',
-    data () {
+  name: "info",
+  data() {
     return {
-
-    }
-    
+      newContact: ""
+    };
   },
-   props: ['countUsers','isOnline', 'unreadMessages'],
-
-}
+  props: ["users", "unreadMessages", "totalUsersOnline", "allUsers"],
+  methods: {
+    toggleFavorites() {
+      alert("halp");
+    }
+  }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-@import '../../styles/global.scss';
+@import "../../styles/global.scss";
 
-.contact-counts{
-  border:1px solid black;
-  margin:0 auto;
+.contact-counts {
+
+  ul {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid $red;
+    padding:0;
+    li {
+      display: inline;
+      font-size: 14px;
+      margin: 10px;
+      a {
+        text-decoration: none;
+        font-size: 20px;
+        margin: 0;
+        color: $red;
+        font-weight: 900;
+      }
+    }
+  }
+    form{
+        text-align: right;
+        padding-right: 10px;
+        font-weight: 900;
+        margin-bottom: 20px;
+        select{
+            background-color: transparent;
+            cursor: pointer;
+            border:none;
+            font-size: 14px;
+        }
+    }
 }
-
-
 </style>

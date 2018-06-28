@@ -22,10 +22,13 @@ export default {
 
 <style lang="scss">
 @import "../src/styles/global.scss";
+body{
+    background-color: $light-gray;
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
-  background-color: $white;
-  // width:1440px;
-  // background-color: red;
+  height: 100vh;
+
+  margin:0px 10px;
 }
 </style>

@@ -12,12 +12,13 @@
             </svg>
       </div>
 
-        <singlemessage  :class="{isRead:user.read=true}" 
+        <singlemessage  v-if="user.online == true" :class="{isRead:usermessages.received}" 
         v-for="usermessages in user.messages " 
         :key="usermessages.messages" 
         :usermessages="usermessages">
         </singlemessage>
-     
+
+
       <form class="d-flex justify-content-center" @submit.prevent="sendMessages" action="">
           <input type="text" name="chat" placeholder="Start a conversation" v-model="sentMessage">
           <button type="submit"> send</button>
@@ -29,7 +30,6 @@
 </template>
 
 <script>
-import moment from "moment";
 import singlemessage from "./singlemessage";
 export default {
   name: "displaychat",
@@ -45,29 +45,17 @@ export default {
   props: ["user", "clickedElement"],
   methods: {
     sendMessages() {
-      var date = new Date();
       this.user.messages.push({
         msg: this.sentMessage,
-        time: moment(date).fromNow(),
-        display: true
+        display: true,
+        read: true,
+        sent: true
       });
+
       setTimeout(() => {
         this.pushNextMsg();
-      }, 500);
+      }, 1000);
       this.sentMessage = "";
-    },
-    pushNextMsg() {
-      for (var i = 0; i < this.user.messages.length; i++) {
-        if (this.user.messages[i].display == false) {
-          this.user.messages.push({
-            msg: this.user.messages[i].msg,
-            read: true,
-            display: true
-            // time:moment(date).fromNow()
-          });
-          return this.user.messages.splice(i, 1);
-        }
-      }
     }
   }
 };
@@ -110,14 +98,10 @@ export default {
     background-color: rgba($color: $dark-red, $alpha: 1);
     color: white;
     border-radius: 40px;
-    width: 50%;
     padding: 0px 10px;
     font-size: 14px;
     font-weight: 100;
-    &:nth-child(odd) {
-      background-color: rgba($color: $gray, $alpha: 0.6);
-      margin-left: 50%;
-    }
+    width: 50%;
   }
   form {
     // border:1px solid black;

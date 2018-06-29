@@ -10,7 +10,7 @@
         :totalUsersOnline="totalUsersOnline">
       </info>
 
-        <contacts    
+        <contacts 
             v-for="user in users"
             :user="user"
             :key="user.userID"> 
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import moment from 'moment'
+import moment from "moment";
 import contacts from "../components/templates/contacts.vue";
 import chatnav from "../components/templates/chatnav.vue";
 import info from "../components/templates/info.vue";
@@ -38,8 +38,7 @@ export default {
   },
   data() {
     return {
-      
-      users:'',
+      users: "",
       clickedElement: "",
       toggledClass: "",
       selectedUser: ""
@@ -58,7 +57,7 @@ export default {
       }
       return total;
     },
-     unreadMessages(){
+    unreadMessages() {
       var total = 0;
       for (var i = 0; i < this.users.length; i++) {
         for (var j = 0; j < this.users[i].messages.length; j++) {
@@ -70,37 +69,33 @@ export default {
       return total;
     }
   },
-  
+
   mounted() {
-    this.axios
-      .get('https://api.myjson.com/bins/17cxfy')
-      .then(response =>(this.users = response.data))
+    var info = "";
+    this.axios.get("https://api.myjson.com/bins/jz346").then(response => {
+      localStorage.setItem("users", JSON.stringify(response.data));
+    });
+    this.users = JSON.parse(localStorage.getItem("users"));
     this.getClickedElement();
-   
   },
 
   methods: {
     getClickedElement() {
-
-      var date = new Date()
       this.$on("itemClicked", userID => {
         this.clickedElement = userID;
+        console.log(this.users);
         for (var i = 0; i < this.users.length; i++) {
           if (this.clickedElement == this.users[i].userID) {
             this.selectedUser = this.users[i];
-            this.selectedUser.messages.push({time:moment(date).fromNow()})
             setTimeout(() => {
               this.selectedUser.messages[0].display = true;
-              this.selectedUser.messages.read = true;
-
-            }, 2500);
+              this.selectedUser.messages[0].received = true;
+            }, 500);
           }
         }
       });
     }
-
-  },
-
+  }
 };
 </script>
 
@@ -109,7 +104,6 @@ export default {
 @import "../styles/global.scss";
 
 .chatbox {
-
   margin: 0;
   padding: 0;
   .row {
@@ -120,13 +114,16 @@ export default {
       padding: 0;
     }
   }
-  .col-lg-3{
-    margin:0;
-    padding:0;
+  .col-lg-3 {
+    margin: 0;
+    padding: 0;
   }
-  .sidebar{
-    border-right:1px solid $dark-red;
-    padding-bottom:100px;
+  .sidebar {
+    border-right: 1px solid $dark-red;
+    padding-bottom: 100px;
+  }
+  .isUnread {
+    background-color: red;
   }
 }
 </style>

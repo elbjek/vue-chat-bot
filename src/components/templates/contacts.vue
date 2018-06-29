@@ -2,8 +2,8 @@
     <div class="contacts" >
    
       <ul>
-          <li @click.prevent="getClickedElement" >
-              <router-link to="/userpage" href="#" class="d-flex align-items-center justify-content-between">
+          <li @click.prevent="getClickedElement"  >
+              <router-link to="/userpage" href="#"   class="d-flex align-items-center justify-content-between">
                    <div class="d-flex align-items-center">
                       <div class="img-circle">
                         <img  :src="user.img" alt="">
@@ -94,6 +94,9 @@ padding-right: 10px;
   }
   .isFavorite{
     background-color:pink;
+  }
+  .isUnread{
+    background-color:red;
   }
 }
 </style>

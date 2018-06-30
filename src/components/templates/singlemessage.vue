@@ -1,9 +1,9 @@
 <template>
-
+<div>       
     <div class="single-message">
         <p v-text="usermessages.msg" v-if="usermessages.display" :class="{isSent:usermessages.sent}"  > </p>
    </div>
-
+</div>
 </template>
 
 <script>
@@ -12,11 +12,9 @@ export default {
   props: ["usermessages"],
   data() {
     return {
-      users: []
+      users: [],
+      time: ""
     };
-  },
-  mounted() {
-    this.users = JSON.parse(localStorage.getItem("users"));
   }
 };
 </script>
@@ -33,7 +31,7 @@ export default {
   .isSent {
     background-color: rgba($color: $gray, $alpha: 1);
     color: white;
-    border-radius: 40px;
+    border-radius: 5px;
     padding: 0px 10px;
     font-size: 14px;
     font-weight: 100;
